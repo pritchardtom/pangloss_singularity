@@ -46,6 +46,15 @@ cd pangloss
 
 # AUGUSTUS Test (via writable build):
 
+git clone git://github.com/pezmaster31/bamtools.git
+mv bamtools bamtools_src
+mkdir bam_build
+cd bam_build
+cmake -DCMAKE_INSTALL_PREFIX=/pangloss/bamtools ../bamtools_src
+make
+make install
+
+cd /pangloss
 mkdir samtools
 cd samtools
 
