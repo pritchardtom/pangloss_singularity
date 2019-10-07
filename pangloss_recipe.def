@@ -56,11 +56,20 @@ perl -MCPAN -e 'install Hash::Merge'
 perl -MCPAN -e 'install Logger::Simple'
 perl -MCPAN -e 'install Parallel::ForkManager'
 
-pip3 install biopython
-pip3 install goatools
-
 mkdir /pangloss
 cd pangloss
+
+# install R mods for Pangloss:
+touch install_pkgs.R
+echo "install.packages(\"ggplot2\")" >> install_pkgs.R
+echo "install.packages(\"ggrepel\")" >> install_pkgs.R
+echo "install.packages(\"UpSetR\")" >> install_pkgs.R
+echo "source(\"https://bioconductor.org/biocLite.R\")" >> install_pkgs.R
+echo "BiocInstaller::biocLite(\"karyoploteR\")" >> install_pkgs.R
+Rscript install_pkgs.R
+
+pip3 install biopython
+pip3 install goatools
 
 mkdir samtools
 cd samtools
