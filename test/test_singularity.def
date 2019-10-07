@@ -37,6 +37,40 @@ r-base \
 r-base-dev \
 r-cran-ggplot2
 
+mkdir /pangloss
+cd pangloss
+
+mkdir samtools
+cd samtools
+
+git clone https://github.com/samtools/htslib.git
+cd htslib
+autoheader
+autoconf
+./configure
+make
+make install
+
+cd ..
+git clone https://github.com/samtools/bcftools.git
+cd bcftools
+autoheader
+autoconf
+./configure
+make
+make install
+
+cd ..
+git clone https://github.com/samtools/samtools.git
+cd samtools
+autoheader
+autoconf -Wno-syntax
+./configure
+make
+make install
+cd ..
+cd ..
+
 git clone https://github.com/Gaius-Augustus/Augustus.git
 cd Augustus
 make
