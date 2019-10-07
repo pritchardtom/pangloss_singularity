@@ -35,7 +35,6 @@ container.
 ### INSTALL:
 
 - Pangloss
-  * GeneMark-ES (sort key file out too)
   * BUSCO
     - Augustus
 
@@ -44,12 +43,14 @@ container.
 - A few paths need setting in `%post`
 - Environment PATHs need setting in `%environment`
 
+- Need to sort out transfer of test pangloss data
+- Need to sort out the GeneMark-ES key, and copy it to relevant location.
 
 ## DONE
 
 - BioPython
 - Exonerate
-- GeneMark-ES Dependencies:
+- GeneMark-ES and deps:
   * YAML::Any            
   * Hash::Merge
   * Logger::Simple
