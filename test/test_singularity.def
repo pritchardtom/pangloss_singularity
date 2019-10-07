@@ -47,11 +47,11 @@ mkdir /pangloss
 cd pangloss
 
 touch install_pkgs.R
-echo "install.packages("ggplot2")" >> install_pkgs.R
-echo "install.packages("ggrepel")" >> install_pkgs.R
-echo "install.packages("UpSetR")" >> install_pkgs.R
-echo "install.packages("BiocManager")" >> install_pkgs.R
-echo "BiocManager::install("karyoploteR")" >> install_pkgs.R
+echo "install.packages(\"ggplot2\")" >> install_pkgs.R
+echo "install.packages(\"ggrepel\")" >> install_pkgs.R
+echo "install.packages(\"UpSetR\")" >> install_pkgs.R
+echo "install.packages(\"BiocManager\")" >> install_pkgs.R
+echo "BiocManager::install(\"karyoploteR\")" >> install_pkgs.R
 Rscript install_pkgs.R
 
 #mkdir samtools
