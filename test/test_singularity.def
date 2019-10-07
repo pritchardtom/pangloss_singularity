@@ -46,34 +46,34 @@ cd pangloss
 
 # AUGUSTUS Test (via writable build):
 
-#mkdir samtools
-#cd samtools
+mkdir samtools
+cd samtools
 
-#git clone https://github.com/samtools/htslib.git
-#cd htslib
-#autoheader
-#autoconf
-#./configure
-#make
-#make install
+git clone https://github.com/samtools/htslib.git
+cd htslib
+autoheader
+autoconf
+./configure
+make
+make install
 
-#cd ..
-#git clone https://github.com/samtools/bcftools.git
-#cd bcftools
-#autoheader
-#autoconf
-#./configure
-#make
-#make install
+cd ..
+git clone https://github.com/samtools/bcftools.git
+cd bcftools
+autoheader
+autoconf
+./configure
+make
+make install
 
-#cd ..
-#git clone https://github.com/samtools/samtools.git
-#cd samtools
-#autoheader
-#autoconf -Wno-syntax
-#./configure
-#make
-#make install
+cd ..
+git clone https://github.com/samtools/samtools.git
+cd samtools
+autoheader
+autoconf -Wno-syntax
+./configure
+make
+make install
 
 cd /pangloss
 git clone https://github.com/Gaius-Augustus/Augustus.git
