@@ -77,9 +77,9 @@ cd pangloss
 
 cd /pangloss
 git clone https://github.com/Gaius-Augustus/Augustus.git
-cd Augustus
-make
-make install
+#cd Augustus
+#make
+#make install
 
 
 # Added to main recipe file.
