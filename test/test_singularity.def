@@ -14,7 +14,7 @@ python3-pip \
 wget \
 git \
 autoconf \
-openjdk-11-jdk \
+# openjdk-11-jdk \
 hmmer \
 ncbi-blast+ \
 libboost-iostreams-dev \
@@ -33,9 +33,11 @@ libncurses5-dev \
 libssl-dev \
 libcurl3-dev \
 libopenblas-base \
-r-base \
-r-base-dev \
-r-cran-ggplot2
+#r-base \
+#r-base-dev \
+#r-cran-ggplot2 \
+bamtools \
+augustus
 
 mkdir /pangloss
 cd pangloss
