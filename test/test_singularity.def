@@ -5,14 +5,16 @@
 Bootstrap: docker
 From: ubuntu:18.04
 
+%files
+gm_et_linux_64.tar.gz
+gm_key_64.gz
+
 %post
 apt-get update
 apt-get install -y build-essential \
-cmake \
-r-base \
-r-base-dev
+cmake
 
-###################
+# \
 #python3.6 \
 #python3-pip \
 #wget \
@@ -37,31 +39,10 @@ r-base-dev
 #libssl-dev \
 #libcurl3-dev \
 #libopenblas-base \
-#r-base \
-#r-base-dev
-
-#r-cran-ggplot \
-# bamtools \
-# augustus
-
-################
-
-# okay, Augustus is still being difficult.
-# Let's try the R packages instead:
+#bamtools \
 
 mkdir /pangloss
 cd pangloss
-
-touch install_pkgs.R
-echo "install.packages(\"ggplot2\")" >> install_pkgs.R
-echo "install.packages(\"ggrepel\")" >> install_pkgs.R
-echo "install.packages(\"UpSetR\")" >> install_pkgs.R
-echo "source(\"https://bioconductor.org/biocLite.R\")" >> install_pkgs.R
-echo "BiocInstaller::biocLite(\"karyoploteR\")" >> install_pkgs.R
-Rscript install_pkgs.R
-
-#echo "install.packages(\"BiocManager\")" >> install_pkgs.R
-#echo "BiocManager::install(\"karyoploteR\")" >> install_pkgs.R
 
 #mkdir samtools
 #cd samtools
@@ -97,3 +78,18 @@ Rscript install_pkgs.R
 #cd Augustus
 #make
 #make install
+
+
+
+# Added to main recipe file.
+        # delete later:
+
+#touch install_pkgs.R
+#echo "install.packages(\"ggplot2\")" >> install_pkgs.R
+#echo "install.packages(\"ggrepel\")" >> install_pkgs.R
+#echo "install.packages(\"UpSetR\")" >> install_pkgs.R
+#echo "source(\"https://bioconductor.org/biocLite.R\")" >> install_pkgs.R
+#echo "BiocInstaller::biocLite(\"karyoploteR\")" >> install_pkgs.R
+#Rscript install_pkgs.R
+#echo "install.packages(\"BiocManager\")" >> install_pkgs.R
+#echo "BiocManager::install(\"karyoploteR\")" >> install_pkgs.R
