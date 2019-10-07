@@ -12,37 +12,48 @@ gm_key_64.gz
 %post
 apt-get update
 apt-get install -y build-essential \
-cmake
+cmake \
+python3.6 \
+python3-pip \
+wget \
+git \
+autoconf \
+openjdk-11-jdk \
+hmmer \
+ncbi-blast+ \
+libboost-iostreams-dev \
+zlib1g-dev \
+libgsl-dev \
+libboost-graph-dev \
+libsuitesparse-dev \
+liblpsolve55-dev \
+libsqlite3-dev \
+libmysql++-dev \
+libbamtools-dev \
+libboost-all-dev \
+libbz2-dev \
+liblzma-dev \
+libncurses5-dev \
+libssl-dev \
+libcurl3-dev \
+libopenblas-base \
+bamtools
 
-# \
-#python3.6 \
-#python3-pip \
-#wget \
-#git \
-#autoconf \
-#openjdk-11-jdk \
-#hmmer \
-#ncbi-blast+ \
-#libboost-iostreams-dev \
-#zlib1g-dev \
-#libgsl-dev \
-#libboost-graph-dev \
-#libsuitesparse-dev \
-#liblpsolve55-dev \
-#libsqlite3-dev \
-#libmysql++-dev \
-#libbamtools-dev \
-#libboost-all-dev \
-#libbz2-dev \
-#liblzma-dev \
-#libncurses5-dev \
-#libssl-dev \
-#libcurl3-dev \
-#libopenblas-base \
-#bamtools \
+# install Perl mods for GeneMark-ES:
+export PERL_MM_USE_DEFAULT=1
+perl -MCPAN -e 'install YAML::Any'
+perl -MCPAN -e 'install Hash::Merge'
+perl -MCPAN -e 'install Logger::Simple'
+perl -MCPAN -e 'install Parallel::ForkManager'
 
 mkdir /pangloss
 cd pangloss
+cd ..
+
+# GeneMark-ES:
+tar -zxvf gm_et_linux_64.tar.gz
+mv gm_et_linux_64 pangloss/
+tar -xvf gm_key_64.gz
 
 #mkdir samtools
 #cd samtools
@@ -78,7 +89,6 @@ cd pangloss
 #cd Augustus
 #make
 #make install
-
 
 
 # Added to main recipe file.
