@@ -9,36 +9,42 @@ From: ubuntu:18.04
 apt-get update
 apt-get install -y build-essential \
 cmake \
-python3.6 \
-python3-pip \
-wget \
-git \
-autoconf \
-openjdk-11-jdk \
-hmmer \
-ncbi-blast+ \
-libboost-iostreams-dev \
-zlib1g-dev \
-libgsl-dev \
-libboost-graph-dev \
-libsuitesparse-dev \
-liblpsolve55-dev \
-libsqlite3-dev \
-libmysql++-dev \
-libbamtools-dev \
-libboost-all-dev \
-libbz2-dev \
-liblzma-dev \
-libncurses5-dev \
-libssl-dev \
-libcurl3-dev \
-libopenblas-base \
 r-base \
 r-base-dev
+
+###################
+#python3.6 \
+#python3-pip \
+#wget \
+#git \
+#autoconf \
+#openjdk-11-jdk \
+#hmmer \
+#ncbi-blast+ \
+#libboost-iostreams-dev \
+#zlib1g-dev \
+#libgsl-dev \
+#libboost-graph-dev \
+#libsuitesparse-dev \
+#liblpsolve55-dev \
+#libsqlite3-dev \
+#libmysql++-dev \
+#libbamtools-dev \
+#libboost-all-dev \
+#libbz2-dev \
+#liblzma-dev \
+#libncurses5-dev \
+#libssl-dev \
+#libcurl3-dev \
+#libopenblas-base \
+#r-base \
+#r-base-dev
 
 #r-cran-ggplot \
 # bamtools \
 # augustus
+
+################
 
 # okay, Augustus is still being difficult.
 # Let's try the R packages instead:
@@ -50,9 +56,11 @@ touch install_pkgs.R
 echo "install.packages(\"ggplot2\")" >> install_pkgs.R
 echo "install.packages(\"ggrepel\")" >> install_pkgs.R
 echo "install.packages(\"UpSetR\")" >> install_pkgs.R
-echo "install.packages(\"BiocManager\")" >> install_pkgs.R
+echo "source(\"https://bioconductor.org/biocLite.R\")" >> install_pkgs.R
 echo "BiocManager::install(\"karyoploteR\")" >> install_pkgs.R
 Rscript install_pkgs.R
+
+#echo "install.packages(\"BiocManager\")" >> install_pkgs.R
 
 #mkdir samtools
 #cd samtools
