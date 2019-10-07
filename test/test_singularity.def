@@ -5,9 +5,9 @@
 Bootstrap: docker
 From: ubuntu:18.04
 
-%files
-gm_et_linux_64.tar.gz
-gm_key_64.gz
+#%files
+#gm_et_linux_64.tar.gz
+#gm_key_64.gz
 
 %post
 apt-get update
@@ -39,53 +39,43 @@ libcurl3-dev \
 libopenblas-base \
 bamtools
 
-# install Perl mods for GeneMark-ES:
-export PERL_MM_USE_DEFAULT=1
-perl -MCPAN -e 'install YAML::Any'
-perl -MCPAN -e 'install Hash::Merge'
-perl -MCPAN -e 'install Logger::Simple'
-perl -MCPAN -e 'install Parallel::ForkManager'
-
 mkdir /pangloss
 cd pangloss
+
+# AUGUSTUS Test (via writable build):
+
+mkdir samtools
+cd samtools
+
+git clone https://github.com/samtools/htslib.git
+cd htslib
+autoheader
+autoconf
+./configure
+make
+make install
+
 cd ..
+git clone https://github.com/samtools/bcftools.git
+cd bcftools
+autoheader
+autoconf
+./configure
+make
+make install
 
-# GeneMark-ES:
-tar -zxvf gm_et_linux_64.tar.gz
-mv gm_et_linux_64 pangloss/
-tar -xvf gm_key_64.gz
+cd ..
+git clone https://github.com/samtools/samtools.git
+cd samtools
+autoheader
+autoconf -Wno-syntax
+./configure
+make
+make install
 
-#mkdir samtools
-#cd samtools
+cd /pangloss
+git clone https://github.com/Gaius-Augustus/Augustus.git
 
-#git clone https://github.com/samtools/htslib.git
-#cd htslib
-#autoheader
-#autoconf
-#./configure
-#make
-#make install
-
-#cd ..
-#git clone https://github.com/samtools/bcftools.git
-#cd bcftools
-#autoheader
-#autoconf
-#./configure
-#make
-#make install
-
-#cd ..
-#git clone https://github.com/samtools/samtools.git
-#cd samtools
-#autoheader
-#autoconf -Wno-syntax
-#./configure
-#make
-#make install
-#cd ../..
-
-#git clone https://github.com/Gaius-Augustus/Augustus.git
 #cd Augustus
 #make
 #make install
@@ -103,3 +93,15 @@ tar -xvf gm_key_64.gz
 #Rscript install_pkgs.R
 #echo "install.packages(\"BiocManager\")" >> install_pkgs.R
 #echo "BiocManager::install(\"karyoploteR\")" >> install_pkgs.R
+
+# install Perl mods for GeneMark-ES:
+#export PERL_MM_USE_DEFAULT=1
+#perl -MCPAN -e 'install YAML::Any'
+#perl -MCPAN -e 'install Hash::Merge'
+#perl -MCPAN -e 'install Logger::Simple'
+#perl -MCPAN -e 'install Parallel::ForkManager'
+
+# GeneMark-ES:
+#tar -zxvf gm_et_linux_64.tar.gz
+#mv gm_et_linux_64 pangloss/
+#tar -xvf gm_key_64.gz
