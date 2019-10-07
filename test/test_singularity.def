@@ -33,48 +33,58 @@ libncurses5-dev \
 libssl-dev \
 libcurl3-dev \
 libopenblas-base \
-bamtools \
-augustus
+r-base \
+r-base-dev
 
-#r-base \
-#r-base-dev \
-#r-cran-ggplot2 \
+#r-cran-ggplot \
+# bamtools \
+# augustus
+
+# okay, Augustus is still being difficult.
+# Let's try the R packages instead:
 
 mkdir /pangloss
 cd pangloss
 
-mkdir samtools
-cd samtools
+touch install_pkgs.R
+echo "install.packages("ggplot2")" >> install_pkgs.R
+echo "install.packages("ggrepel")" >> install_pkgs.R
+echo "install.packages("UpSetR")" >> install_pkgs.R
+echo "install.packages("BiocManager")" >> install_pkgs.R
+echo "BiocManager::install("karyoploteR")" >> install_pkgs.R
+Rscript install_pkgs.R
 
-git clone https://github.com/samtools/htslib.git
-cd htslib
-autoheader
-autoconf
-./configure
-make
-make install
+#mkdir samtools
+#cd samtools
 
-cd ..
-git clone https://github.com/samtools/bcftools.git
-cd bcftools
-autoheader
-autoconf
-./configure
-make
-make install
+#git clone https://github.com/samtools/htslib.git
+#cd htslib
+#autoheader
+#autoconf
+#./configure
+#make
+#make install
 
-cd ..
-git clone https://github.com/samtools/samtools.git
-cd samtools
-autoheader
-autoconf -Wno-syntax
-./configure
-make
-make install
-cd ..
-cd ..
+#cd ..
+#git clone https://github.com/samtools/bcftools.git
+#cd bcftools
+#autoheader
+#autoconf
+#./configure
+#make
+#make install
 
-git clone https://github.com/Gaius-Augustus/Augustus.git
-cd Augustus
-make
-make install
+#cd ..
+#git clone https://github.com/samtools/samtools.git
+#cd samtools
+#autoheader
+#autoconf -Wno-syntax
+#./configure
+#make
+#make install
+#cd ../..
+
+#git clone https://github.com/Gaius-Augustus/Augustus.git
+#cd Augustus
+#make
+#make install
