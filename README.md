@@ -38,11 +38,6 @@ container.
   * GeneMark-ES (sort key file out too)
   * BUSCO
     - Augustus
-  * R Packages
-    - ggplot
-    - ggrepel
-    - UpSetR
-    - KaryoploteR
 
 ### RECIPE:
 
@@ -66,3 +61,8 @@ container.
 - PAML
 - GOATools
 - Samtools
+- R Packages
+  * ggplot
+  * ggrepel
+  * UpSetR
+  * KaryoploteR
