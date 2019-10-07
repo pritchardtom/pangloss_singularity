@@ -1,0 +1,43 @@
+# Smaller singularity image to test
+# individual (where possible) dependencies
+# for Pangloss.
+
+Bootstrap: docker
+From: ubuntu:18.04
+
+%post
+apt-get update
+apt-get install -y build-essential \
+cmake \
+python3.6 \
+python3-pip \
+wget \
+git \
+autoconf \
+openjdk-11-jdk \
+hmmer \
+ncbi-blast+ \
+libboost-iostreams-dev \
+zlib1g-dev \
+libgsl-dev \
+libboost-graph-dev \
+libsuitesparse-dev \
+liblpsolve55-dev \
+libsqlite3-dev \
+libmysql++-dev \
+libbamtools-dev \
+libboost-all-dev \
+libbz2-dev \
+liblzma-dev \
+libncurses5-dev \
+libssl-dev \
+libcurl3-dev \
+libopenblas-base \
+r-base \
+r-base-dev \
+r-cran-ggplot2
+
+git clone https://github.com/Gaius-Augustus/Augustus.git
+cd Augustus
+make
+make install
