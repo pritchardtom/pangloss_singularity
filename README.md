@@ -18,6 +18,8 @@ container.
   * BUSCO
     - Hmmer
     - Augustus
+      * samtools
+      * various `apt-get` packages
   * Muscle
   * PAML
   * InterProScan
@@ -28,3 +30,39 @@ container.
     - UpSetR
     - KaryoploteR
 
+## TO-DO
+
+### INSTALL:
+
+- Pangloss
+  * GeneMark-ES (sort key file out too)
+  * BUSCO
+    - Augustus
+  * R Packages
+    - ggplot
+    - ggrepel
+    - UpSetR
+    - KaryoploteR
+
+### RECIPE:
+
+- A few paths need setting in `%post`
+- Environment PATHs need setting in `%environment`
+
+
+## DONE
+
+- BioPython
+- Exonerate
+- GeneMark-ES Dependencies:
+  * YAML::Any            
+  * Hash::Merge
+  * Logger::Simple
+  * Parallel::ForkManager
+- TransDecoder
+- Blast+
+- Hmmer
+- Muscle
+- PAML
+- GOATools
+- Samtools
