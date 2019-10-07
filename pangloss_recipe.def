@@ -1,0 +1,125 @@
+# Recipe to install Pangloss and dependencies
+# inside Singularity container.
+
+Bootstrap: docker
+From: ubuntu:18.04
+
+%labels
+MAINTAINER Tom Pritchard
+
+%files
+        # need to copy the key for GeneMark-ES across.
+
+%environment
+        # set env PATHs here.
+
+%post
+apt-get update
+
+# install some of the dependencies required:
+
+apt-get install -y build-essential \
+cmake \
+python3.6 \
+python3-pip \
+wget \
+git \
+autoconf \
+openjdk-11-jdk \
+hmmer \
+ncbi-blast+ \
+libboost-iostreams-dev \
+zlib1g-dev \
+libgsl-dev \
+libboost-graph-dev \
+libsuitesparse-dev \
+liblpsolve55-dev \
+libsqlite3-dev \
+libmysql++-dev \
+libbamtools-dev \
+libboost-all-dev \
+libbz2-dev \
+liblzma-dev \
+libncurses5-dev \
+libssl-dev \
+libcurl3-dev \
+libopenblas-base \
+r-base \
+r-base-dev \
+r-cran-ggplot2 \
+exonerate
+
+# install Perl mods for GeneMark-ES:
+export PERL_MM_USE_DEFAULT=1
+perl -MCPAN -e 'install YAML::Any'
+perl -MCPAN -e 'install Hash::Merge'
+perl -MCPAN -e 'install Logger::Simple'
+perl -MCPAN -e 'install Parallel::ForkManager'
+
+pip3 install biopython
+pip3 install goatools
+
+mkdir /pangloss
+cd pangloss
+
+mkdir samtools
+cd samtools
+
+git clone https://github.com/samtools/htslib.git
+cd htslib
+autoheader
+autoconf
+./configure
+make
+make install
+
+cd ..
+git clone https://github.com/samtools/bcftools.git
+cd bcftools
+autoheader
+autoconf
+./configure
+make
+make install
+
+cd ..
+git clone https://github.com/samtools/samtools.git
+cd samtools
+autoheader
+autoconf -Wno-syntax
+./configure
+make
+make install
+cd ..
+cd ..
+
+# Advised in docs, but not sure required:
+        # export TOOLDIR=/path/where/four/dependencies/reside
+        # make
+
+# TransDecoder:
+git clone https://github.com/TransDecoder/TransDecoder.git
+
+# Muscle:
+mkdir muscle
+cd muscle
+wget https://www.drive5.com/muscle/downloads3.8.31/muscle3.8.31_i86linux64.tar.gz
+tar -zxvf muscle3.8.31_i86linux64.tar.gz
+mv muscle3.8.31_i86linux64 muscle
+rm muscle3.8.31_i86linux64.tar.gz
+
+
+# PAML:
+wget http://abacus.gene.ucl.ac.uk/software/paml4.9i.tgz
+tar -xvf paml4.9i.tgz
+cd paml4.9i
+rm bin/*.exe
+cd src/
+make -f Makefile
+rm *.o
+mv baseml basemlg codeml pamp evolver yn00 chi2 ../bin
+
+# InterProScan:
+wget ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.38-76.0/interproscan-5.38-76.0-64-bit.tar.gz
+tar -pxvzf interproscan-5.38-76.0-64-bit.tar.gz
+mv interproscan-5.38-76.0 interproscan
