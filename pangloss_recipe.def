@@ -116,7 +116,7 @@ cd paml4.9i
 rm bin/*.exe
 cd src/
 make -f Makefile
-rm *.o
+
 mv baseml basemlg codeml pamp evolver yn00 chi2 ../bin
 
 # InterProScan:
